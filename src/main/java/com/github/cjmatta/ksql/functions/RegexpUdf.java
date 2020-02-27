@@ -1,6 +1,5 @@
 package com.github.cjmatta.ksql.functions;
 
-import com.sun.org.apache.xpath.internal.operations.Bool;
 import io.confluent.ksql.function.udf.Udf;
 import io.confluent.ksql.function.udf.UdfDescription;
 import io.confluent.ksql.function.udf.UdfParameter;
