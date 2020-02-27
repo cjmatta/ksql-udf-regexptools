@@ -21,22 +21,22 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
 /**
- * Example class that demonstrates how to unit test UDFs.
+ * Test all permutations of the RegexpSubstr class
  */
 public class RegexpSubstrTests {
   @Test
   void regexpSubstringBasicTest() {
-    final String source = "HelloWorld";
-    final String pattern = "World$";
+    final String source = "Cat Cut Cot";
+    final String pattern = "C.t";
     final RegexpSubstrUdf regexSubstr = new RegexpSubstrUdf();
     final String actualResult = regexSubstr.regexpSubstr(source, pattern);
-    assertEquals("World", actualResult, source + " should equal World");
+    assertEquals("Cat", actualResult);
   }
 
   @Test
   void regexpSubstringNullTest() {
-    final String source = "HelloWorld";
-    final String pattern = "Borld$";
+    final String source = "Cat Cut Cot";
+    final String pattern = "C.x";
     final RegexpSubstrUdf regexSubstr = new RegexpSubstrUdf();
     final String actualResult = regexSubstr.regexpSubstr(source, pattern);
     assertNull(actualResult);
@@ -44,20 +44,29 @@ public class RegexpSubstrTests {
 
   @Test
   void regexpSubstringPositionTest() {
-    final String source = "HelloWorldWorld!";
-    final String pattern = "World.*";
+    final String source = "Cat Cut Cot";
+    final String pattern = "C.t";
     final RegexpSubstrUdf regexpSubstr = new RegexpSubstrUdf();
-    final String actualResult = regexpSubstr.regexpSubstr(source, pattern, 10);
-    assertEquals("World!", actualResult, source + " should equal World!");
+    final String actualResult = regexpSubstr.regexpSubstr(source, pattern, 2);
+    assertEquals("Cut", actualResult);
+  }
+
+  @Test
+  void regexpSubstringOccurrenceTest() {
+    final String source = "Cat Cut Cot";
+    final String pattern = "C.t";
+    final RegexpSubstrUdf regexpSubstr = new RegexpSubstrUdf();
+    final String actualResult = regexpSubstr.regexpSubstr(source, pattern, 2, 2);
+    assertEquals("Cot", actualResult);
   }
 
   @Test
   void regexpSubstringCaseInsensitiveTest() {
-    final String source = "HelloWorldWorld!";
-    final String pattern = "world.*";
+    final String source = "Cat Cut Cot";
+    final String pattern = "c.t";
     final RegexpSubstrUdf regexpSubstr = new RegexpSubstrUdf();
     final String actualResult = regexpSubstr.regexpSubstr(source, pattern,"i");
-    assertEquals("WorldWorld!", actualResult, source + " should equal WorldWorld!");
+    assertEquals("Cat", actualResult);
   }
 
 

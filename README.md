@@ -11,7 +11,7 @@ KSQL has some basic [scalar functions](https://docs.confluent.io/current/ksql/do
 
 These UDFs could support the following implementations (heavily borrowed from MySQL):
 
-`REGEXP`/`NOT_REGEXP`
+`REGEXP`
 Return BOOLEAN if the pattern matches
 ```
 REGEXP(
@@ -26,12 +26,6 @@ REGEXP(
 )
 
 ```
-
-`REGEXP_INSTR`
-Returns starting index of substring matching the index
-
-`REGEXP_REPLACE`
-Replace substrings matching regular expression
 
 `REGEXP_SUBSTR`
 Return the substring matching the regular expression
@@ -48,3 +42,9 @@ REGEXP_SUBSTR(
 )
 ```
 
+### Future enhancements
+`REGEXP_INSTR`
+Returns starting index of substring matching the index
+
+`REGEXP_REPLACE`
+Replace substrings matching regular expression
